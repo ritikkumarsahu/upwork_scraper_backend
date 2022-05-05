@@ -1,6 +1,6 @@
 const moment = require('moment');
 const {getPageDetails, testURL } = require("./utils");
-const fs = require("fs/promises");
+const fs = require("fs");
 const dotenv = require("dotenv")
 
 dotenv.config()
@@ -13,17 +13,24 @@ class Scraper {
         this.countries = Array.from(countries);
         this.last_posted = Math.round((moment().startOf('day') - moment(last_posted))/86400000);
         this.data = [];
+        this.save_dir = './job_data/';
+        this.data_dir = './data/';
+        if (!fs.existsSync(save_dir)){
+            fs.mkdirSync(save_dir);
+        }
+        if (!fs.existsSync(data_dir)){
+            fs.mkdirSync(data_dir);
+        }
     }
     async save_data() {
         console.log("saving the data for "+ this.keyword);
-        await fs.writeFile('job_data/'+this.keyword+'.json',JSON.stringify(this.data));
+        fs.writeFileSync(this.save_dir+this.keyword+'.json',JSON.stringify(this.data));
     }
 
     filter_page_jobs(jobs) {
         return jobs.filter(job => {
             try {
                 if (job['amount']['amount'] !== null && job['amount']['amount'] < this.amount) return false;
-                // TODO: totalSpent can be null, handle it
                 if (job['client']['totalSpent'] !== null && job['client']['totalSpent'] < this.client_spent) return false;
                 if (job['client']['location']['country'] !== null && this.countries.includes(String(job['client']['location']['country']).toLowerCase())) return false;
                 if (job['createdOn'] !== null && job['createdOn'] !== '') {
@@ -34,27 +41,41 @@ class Scraper {
             } catch (err) {}
         }).map(job => {
             const base_url = `https://www.upwork.com/job-details/jobdetails/api/job/${job.ciphertext}/`;
-            return [base_url+'details', base_url+'summary'];
+            return [base_url+'summary', base_url+'details'];
         }).flat();
     }
     async filter_jobs(jobs_url) {
+        if (jobs_url.length <= 0) return;
         const jobs_data = await testURL(jobs_url);
         if (jobs_data.length <= 0) {
             console.error("No data found for filtered jobs_urls!");
             return;
         }
+        const data_dict = {};
         jobs_data.forEach((job_data) => {
-            let _data  = {}
-            if (job_data['fullUrl'].contains(job_data["ciphertext"]+'/details')) {
+            if (!(job_data.ciphertext in data_dict)){
+                data_dict[job_data.ciphertext] = {};
+            } 
+            if (job_data['fullUrl'].includes(job_data["ciphertext"]+'/summary')) {
+                const i =  data_dict[job_data.ciphertext].index;
+                let _data  = {};
                 try {
-                    if (job_data['buyer']['stats']['totalCharges']['amount'] < this.client_spent) return;
-                    if (this.countries.includes(String(job_data['buyer']['location']['country']).toLowerCase())) return;
                     const lastBuyerActivity = job_data["job"]["clientActivity"]["lastBuyerActivity"];
-                    last_seen_date =  lastBuyerActivity !== '' ? moment(lastBuyerActivity).utc(0) : moment().utc(0);
-                    if (Math.round((moment().utc(0).startOf('day') - lastBuyerActivity) / 86400000) > 10) return;
                     const totalHired = job_data["job"]["clientActivity"]["totalHired"];
-                    const hired =  totalHired !== 0 ? totalHired : 0 ;
-                    if (hired > 0) return;
+                    const hired =  totalHired || 0 ;
+                    if (
+                        job_data['buyer']['stats']['totalCharges']['amount'] < this.client_spent ||
+                        this.countries.includes(String(job_data['buyer']['location']['country']).toLowerCase()) ||
+                        Math.round((moment().utc(0).startOf('day') - lastBuyerActivity) / 86400000) > 10 ||
+                        hired > 0
+                    ) {
+                        data_dict[job_data.ciphertext].filtered = true;
+                        if ( i !== undefined) {
+                            this.data.splice(i, 1);
+                        }
+                        return;
+                    }
+                    
                 } catch (err) {}
 
                 _data = {
@@ -88,8 +109,17 @@ class Scraper {
                     _data['is_job_fixed'] = false;
     
                 }
+
+                if (i === undefined) {
+                    const ind = this.data.push(_data);
+                    data_dict[job_data.ciphertext].index = ind-1;
+                } else {
+                    this.data[i] = {...this.data[i], ..._data};
+                }
             }
-            else if (job_data['fullUrl'].contains(job_data["ciphertext"]+'/summary')) {
+            else if (job_data['fullUrl'].includes(job_data["ciphertext"]+'/details')) {
+                const i =  data_dict[job_data.ciphertext].index;
+                if (i === undefined && data_dict[job_data.ciphertext].filtered === true) return;
                 const skills = [];
                 try {
                     const ontologySkills = job_data["sands"]["ontologySkills"];
@@ -107,11 +137,18 @@ class Scraper {
                             skills.push(children[j]['name']);
                     }
                 } catch (e) {}
-                
-                _data['skills'] = skills.join(', ');
+
+                const skills_txt = skills.join(', ');
+                if (i === undefined) {
+                    if (data_dict[job_data.ciphertext].filtered !== true) {
+                        const ind = this.data.push({skills: skills_txt});
+                        data_dict[job_data.ciphertext].index = ind-1;
+                    }
+                } else {
+                    this.data[i]['skills'] = skills_txt
+                }
+
             }
-            
-            this.data.push(_data);
             return;
         })
     }
@@ -127,9 +164,8 @@ class Scraper {
                 console.error('Page not found!');
                 break;
             }
-            console.log(`Grab page #${page}...`)
             page_data = page_data[0];
-            await fs.writeFile('data/'+this.keyword+'_'+page+'.json',JSON.stringify(page_data));
+            fs.writeFileSync(this.data_dir+this.keyword+'_'+page+'.json',JSON.stringify(page_data));
             if ((page_data['searchResults']['jobs'].length <= 0) && (page_data['searchResults']['paging']['total'] > 0) && (page<=total_pages)) {
                 console.error(`Found garbage response! Requesting the page #${page} again.`);
                 continue;
@@ -137,12 +173,13 @@ class Scraper {
             total = page_data.searchResults.paging.total;
             offset = page_data.searchResults.paging.offset;
             total_pages = Math.ceil(total/page_data['searchResults']['paging']['count']);
+            console.log(`Grabed page #${page}/${total_pages}...`);
             if ((page > total_pages) && ((total - offset)<=0)){
                 console.log('All pages grabbed! Finished!');
                 break;
             }
             const job_links = this.filter_page_jobs(Array.from(page_data['searchResults']['jobs']));
-            console.log(`filtering the ${job_links.length}/${page_data['searchResults']['jobs'].length} links`);
+            console.log(`filtering the ${job_links.length/2}/${page_data['searchResults']['jobs'].length} links`);
             await this.filter_jobs(job_links);
             this.save_data();
             console.log(`File #%${page} saved!`);
@@ -153,7 +190,7 @@ class Scraper {
 }
 
 async function main() {
-    const k = new Scraper('artificial intelligence', 10000, "2022-02-20",["india"]);
+    const k = new Scraper('MACHINE LEARNING', 10000, "2022-05-01",["india"]);
     await k.scrape();
     // const data = require('./dummy');
     // console.log(data.length);
