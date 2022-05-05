@@ -1,14 +1,21 @@
 const playwright = require('playwright');
 const crypto = require("crypto");
-const fs = require('fs/promises');
+const fs = require('fs');
 const {getIpDetails, getProxies} = require('./proxy')
 
 // TODO: check if cookies are expired
 async function is_logged_in(username){
     try {
-        const cookies_file = await fs.readFile(username+'_cookies.json', 'utf8');
+        const cookies_file = fs.readFileSync('./cookies/'+username+'_cookies.json', 'utf8');
         if (cookies_file !== null) {
-            return JSON.parse(cookies_file);
+            const cookies = JSON.parse(cookies_file);
+            user_token = cookies.find(cookie => {
+                return cookie.name === 'user_oauth2_slave_access_token';
+            });
+            if (user_token !== undefined) {
+                const epoch = Math.floor(new Date().getTime() / 1000);
+                if (user_token.expires >= epoch) return cookies;
+            }
         }
     }
     catch (e) {return null;}
@@ -89,7 +96,11 @@ async function login(page) {
 
     const cookies = await page.context().cookies();
     const cookieJson = JSON.stringify(cookies);
-    await fs.writeFile(process.env.UPWORK_USERID+'_cookies.json', cookieJson);
+    const cookies_dir = './cookies/'
+    if (!fs.existsSync(cookies_dir)){
+        fs.mkdirSync(cookies_dir);
+    }
+    fs.writeFileSync(cookies_dir+process.env.UPWORK_USERID+'_cookies.json', cookieJson);
     
     await page.close();
 }
@@ -111,9 +122,9 @@ async function sendRequest(urls) {
     const jobs = [];
     let max_try = 5;
     let context = await preparePage(browser,process.env.UPWORK_USERID, proxies[0]);
+    let page = await context.newPage();
     while (urls.length > 0) {
         let response;
-        const page = await context.newPage();
         try {
             response = await page.goto(urls[0]);
         } catch (e) {
@@ -137,7 +148,7 @@ async function sendRequest(urls) {
             // creating new context session with new proxy
             context.close();
             context = await preparePage(browser, process.env.UPWORK_USERID, proxies[0]);
-
+            page = await context.newPage();
             if (max_try > 1) {
                 max_try--;
                 continue;
@@ -152,8 +163,8 @@ async function sendRequest(urls) {
             try {
                 jsonParsed = JSON.parse(await response.text()) ;
                 let ciphertext=null;
-                if (urls[0].contains("https://www.upwork.com/")){
-                    ciphertext = urls[0].match(/~([^\/]*)/) === null ? null : urls[0].match(/(?<=~).*(?=\/)/)[0];
+                if (String(urls[0]).includes("https://www.upwork.com/")){
+                    ciphertext = urls[0].match(/~([^\/]*)/) === null ? null : urls[0].match(/~([^\/]*)/)[0];
                 }
                 jsonParsed["ciphertext"] = ciphertext;
                 jsonParsed["fullUrl"] = urls[0];
