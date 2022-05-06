@@ -13,13 +13,14 @@ class Scraper {
         this.countries = Array.from(countries);
         this.last_posted = Math.round((moment().startOf('day') - moment(last_posted))/86400000);
         this.data = [];
+        this.is_login = false;
         this.save_dir = './job_data/';
         this.data_dir = './data/';
-        if (!fs.existsSync(save_dir)){
-            fs.mkdirSync(save_dir);
+        if (!fs.existsSync(this.save_dir)){
+            fs.mkdirSync(this.save_dir);
         }
-        if (!fs.existsSync(data_dir)){
-            fs.mkdirSync(data_dir);
+        if (!fs.existsSync(this.data_dir)){
+            fs.mkdirSync(this.data_dir);
         }
     }
     async save_data() {
@@ -40,13 +41,16 @@ class Scraper {
                 }
             } catch (err) {}
         }).map(job => {
-            const base_url = `https://www.upwork.com/job-details/jobdetails/api/job/${job.ciphertext}/`;
-            return [base_url+'summary', base_url+'details'];
+            if (this.is_login) {
+                const base_url = `https://www.upwork.com/job-details/jobdetails/api/job/${job.ciphertext}/`;
+                return [base_url+'summary', base_url+'details'];
+            }
+            return `https://www.upwork.com/ab/jobs/search/jobdetails/visitor/${job.ciphertext}/details`;
         }).flat();
     }
     async filter_jobs(jobs_url) {
         if (jobs_url.length <= 0) return;
-        const jobs_data = await testURL(jobs_url);
+        const jobs_data = await testURL(jobs_url, this.is_login);
         if (jobs_data.length <= 0) {
             console.error("No data found for filtered jobs_urls!");
             return;
@@ -56,7 +60,7 @@ class Scraper {
             if (!(job_data.ciphertext in data_dict)){
                 data_dict[job_data.ciphertext] = {};
             } 
-            if (job_data['fullUrl'].includes(job_data["ciphertext"]+'/summary')) {
+            if (job_data['fullUrl'].includes(job_data["ciphertext"]+'/summary') || !this.is_login) {
                 const i =  data_dict[job_data.ciphertext].index;
                 let _data  = {};
                 try {
@@ -117,7 +121,7 @@ class Scraper {
                     this.data[i] = {...this.data[i], ..._data};
                 }
             }
-            else if (job_data['fullUrl'].includes(job_data["ciphertext"]+'/details')) {
+            if (job_data['fullUrl'].includes(job_data["ciphertext"]+'/details') || !this.is_login) {
                 const i =  data_dict[job_data.ciphertext].index;
                 if (i === undefined && data_dict[job_data.ciphertext].filtered === true) return;
                 const skills = [];
@@ -159,7 +163,7 @@ class Scraper {
         let page = 1;
         let total_pages = 1;
         while (offset+per_page <= total) {
-            let page_data = await getPageDetails(this.keyword,page,per_page);
+            let page_data = await getPageDetails(this.keyword,page,per_page, this.is_login);
             if (page_data.length <= 0) {
                 console.error('Page not found!');
                 break;
@@ -179,7 +183,7 @@ class Scraper {
                 break;
             }
             const job_links = this.filter_page_jobs(Array.from(page_data['searchResults']['jobs']));
-            console.log(`filtering the ${job_links.length/2}/${page_data['searchResults']['jobs'].length} links`);
+            console.log(`filtering the ${this.is_login? job_links.length/2: job_links.length}/${page_data['searchResults']['jobs'].length} links`);
             await this.filter_jobs(job_links);
             this.save_data();
             console.log(`File #%${page} saved!`);
