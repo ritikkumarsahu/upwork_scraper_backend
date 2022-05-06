@@ -14,7 +14,8 @@ async function is_logged_in(username){
             });
             if (user_token !== undefined) {
                 const epoch = Math.floor(new Date().getTime() / 1000);
-                if (user_token.expires >= epoch) return cookies;
+                // TODO: make it >=
+                if (user_token.expires <= epoch) return cookies;
             }
         }
     }
@@ -23,7 +24,7 @@ async function is_logged_in(username){
     return null;
 }
 
-async function preparePage(browser, user_id, proxies) {
+async function preparePage(browser, user_id, proxies, is_login) {
     const res = await getIpDetails(proxies);
     const context = await browser.newContext({
         timezoneId: res.timezone,
@@ -33,15 +34,17 @@ async function preparePage(browser, user_id, proxies) {
             password: proxies.password
         },
     });
-
-    const cookies = await is_logged_in(user_id);
-    if (cookies === null) {
-        const loginPage = await context.newPage();
-        await login(loginPage);
+    if (is_login) {
+        const cookies = await is_logged_in(user_id);
+        if (cookies === null) {
+            const loginPage = await context.newPage();
+            await login(loginPage);
+        }
+        else {
+            await context.addCookies(cookies);
+        }
     }
-    else {
-        await context.addCookies(cookies);
-    }
+    
     context.setExtraHTTPHeaders({'accept': 'application/json, text/plain, */*',
     'x-requested-with': 'XMLHttpRequest'});
     return context;
@@ -105,7 +108,7 @@ async function login(page) {
     await page.close();
 }
 
-async function sendRequest(urls) {
+async function sendRequest(urls, is_login) {
     if (typeof urls === 'string') {
         urls = [urls];
     }
@@ -121,7 +124,7 @@ async function sendRequest(urls) {
 
     const jobs = [];
     let max_try = 5;
-    let context = await preparePage(browser,process.env.UPWORK_USERID, proxies[0]);
+    let context = await preparePage(browser,process.env.UPWORK_USERID, proxies[0], is_login);
     let page = await context.newPage();
     while (urls.length > 0) {
         let response;
