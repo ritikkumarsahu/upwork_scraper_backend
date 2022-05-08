@@ -1,12 +1,18 @@
+const http = require('http');
+const Scraper = require("./Scraper");
+const url = require('url');
 const dotenv = require("dotenv")
-const sendRequest = require("./requests");
-const {getPageDetails, testURL } = require("./utils");
-const fs = require("fs/promises");
 
-dotenv.config();
+dotenv.config()
 
-(async function main() {
-    const jobs = await getPageDetails("artificial intelligence",1,50);
-    page_data = jobs[0];
-    await fs.writeFile('data/artificial intelligence_1.json',JSON.stringify(page_data));
-})();
+http.createServer(async (req, res) => {
+    const query = url.parse(req.url,true).query;
+    const scraper = new Scraper(query.keyword, parseInt(query.client_spent), query.last_posted, String(query.countries).split(','));
+    const response = await scraper.scrape();
+    res.writeHead(
+        200, 
+        {'content-type':'application/json; charset=utf-8'}
+    );
+    res.write(JSON.stringify(response));
+    res.end();
+}).listen(3000, ()=> {console.log("Listening on port 3000")});
