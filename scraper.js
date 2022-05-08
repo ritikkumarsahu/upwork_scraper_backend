@@ -31,7 +31,7 @@ class Scraper {
     filter_page_jobs(jobs) {
         return jobs.filter(job => {
             try {
-                if (job['amount']['amount'] !== null && job['amount']['amount'] < this.amount) return false;
+                if (job['amount']['amount'] !== null && job['amount']['amount'] !== 0 && job['amount']['amount'] < this.amount) return false;
                 if (job['client']['totalSpent'] !== null && job['client']['totalSpent'] < this.client_spent) return false;
                 if (job['client']['location']['country'] !== null && this.countries.includes(String(job['client']['location']['country']).toLowerCase())) return false;
                 if (job['createdOn'] !== null && job['createdOn'] !== '') {
@@ -190,6 +190,7 @@ class Scraper {
             page++;
         }
         console.log(`Download Your file: 'job_data/${this.keyword}.json'`);
+        return this.data;
     }
 }
 
@@ -201,7 +202,4 @@ async function main() {
     // const f_jobs = k.filter_page_jobs(data);
     // console.log(f_jobs);
 }
-main();
-// d = 
-// // d = moment().utc(0).startOf('day') - moment("2022-04-23T18:38:23+00:00").utc(0)
-// console.log(d)
+module.exports = Scraper;
