@@ -1,5 +1,5 @@
 const http = require('http');
-const Scraper = require("./Scraper");
+const Scraper = require("./scraper");
 const url = require('url');
 const dotenv = require("dotenv")
 
