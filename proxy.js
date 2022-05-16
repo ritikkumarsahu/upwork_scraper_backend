@@ -1,6 +1,6 @@
 const axios = require('axios')
 const UserAgent = require('user-agents') ;
-
+const os = require('os');
 
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
@@ -65,7 +65,13 @@ async function getProxies() {
 }
 
 function getUserAgent() {
-  const userAgent = new UserAgent({ deviceCategory: 'desktop', platform: 'Win32' });
+  const os_map = {
+      'darwin': "MacIntel", 
+      'win32': "Win32", 
+      'linux': "Linux x86_64"
+  }
+  const platform = os_map[os.platform()];
+  const userAgent = new UserAgent({ deviceCategory: 'desktop', platform: platform });
   let userAgents = Array(100).fill().map(() => userAgent().toString());
   userAgents = new Set(userAgents);
   return Array.from(userAgents);
