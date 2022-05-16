@@ -11,7 +11,7 @@ async function getJobDetails(job_id, is_login=false) {
     return details;
 }
 async function getPageDetails(keyword,page, per_page=50, is_login= false) {
-    const url = makeUrl(5000,page,per_page,keyword);
+    const url = makeUrl(2000,page,per_page,keyword);
     const details = await sendRequest(url, is_login);
     return details;
 }
