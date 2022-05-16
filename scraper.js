@@ -158,10 +158,18 @@ class Scraper {
     }
     async scrape() {
         const per_page = 50;
+        // initialize the metrics for the page
         let total = 99999999;
         let offset = 0;
         let page = 1;
         let total_pages = 1;
+        let page_metrics = await getPageDetails(this.keyword,2,per_page, this.is_login);
+        if (page_metrics.length > 0) {
+            const metrics = page_metrics[0];
+            total = metrics.searchResults.paging.total;
+            total_pages = Math.ceil(total/metrics['searchResults']['paging']['count']);
+        }
+
         while (offset+per_page <= total) {
             let page_data = await getPageDetails(this.keyword,page,per_page, this.is_login);
             if (page_data.length <= 0) {
