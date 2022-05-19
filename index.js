@@ -13,6 +13,6 @@ http.createServer(async (req, res) => {
         200, 
         {'content-type':'application/json; charset=utf-8'}
     );
-    res.write(JSON.stringify(response));
+    res.write(JSON.stringify(response, (k,v) => v === "NaN" || v === undefined  ? null : v ));
     res.end();
 }).listen(3000, ()=> {console.log("Listening on port 3000")});
