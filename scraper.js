@@ -84,31 +84,31 @@ class Scraper {
 
                 _data = {
                     "keyword":this.keyword,
-                    "title":job_data["job"]["title"],
-                    "link":'https://www.upwork.com/job/'+job_data["job"]["ciphertext"],
-                    "posted_on":job_data["job"]["postedOn"],
-                    "country":job_data["buyer"]["location"]["country"],
-                    "total_jobs_posted":job_data["buyer"]["jobs"]["postedCount"],
-                    "open_jobs":job_data["buyer"]["jobs"]["openCount"],
-                    "total_reviews":job_data["buyer"]["stats"]["feedbackCount"],
-                    "rating": +Number(job_data["buyer"]["stats"]["score"]).toFixed(2),
-                    "total_hires":job_data["buyer"]["stats"]["totalJobsWithHires"],
-                    "client_since":job_data["buyer"]["company"]["contractDate"],      
-                    "client_spent":job_data["buyer"]["stats"]["totalCharges"]["amount"],  
-                    "is_payment_verified":job_data["buyer"]["isPaymentMethodVerified"],
-                    "currency_code":job_data["job"]["budget"]["currencyCode"],
-                    "job_level":job_data["job"]["contractorTier"],
-                    "project_length":job_data["job"]["durationIdV3"],
+                    "title":job_data?.job?.title,
+                    "link":'https://www.upwork.com/job/'+job_data?.job?.ciphertext,
+                    "posted_on":job_data?.job?.postedOn,
+                    "country":job_data?.buyer?.location?.country,
+                    "total_jobs_posted":job_data?.buyer?.jobs?.postedCount,
+                    "open_jobs":job_data?.buyer?.jobs?.openCount,
+                    "total_reviews":job_data?.buyer?.stats?.feedbackCount,
+                    "rating": +Number(job_data?.buyer?.stats?.score).toFixed(2),
+                    "total_hires":job_data?.buyer?.stats?.totalJobsWithHires,
+                    "client_since":job_data?.buyer?.company?.contractDate,      
+                    "client_spent":job_data?.buyer?.stats?.totalCharges?.amount,  
+                    "is_payment_verified":job_data?.buyer?.isPaymentMethodVerified,
+                    "currency_code":job_data?.job?.budget?.currencyCode,
+                    "job_level":job_data?.job?.contractorTier,
+                    "project_length":job_data?.job?.durationIdV3,
                 }
-                if (job_data["job"]["budget"]["amount"]){
+                if (job_data?.job?.budget?.amount){
                     _data['hourly_budget_min'] = null;
                     _data['hourly_budget_max'] = null;
-                    _data['fixed_budget'] = job_data["job"]["budget"]["amount"];
+                    _data['fixed_budget'] = job_data?.job?.budget?.amount;
                     _data['is_job_fixed'] = true;
                 }
                 else{
-                    _data['hourly_budget_min'] = job_data["job"]["extendedBudgetInfo"]["hourlyBudgetMin"];
-                    _data['hourly_budget_max'] = job_data["job"]["extendedBudgetInfo"]["hourlyBudgetMax"];
+                    _data['hourly_budget_min'] = job_data?.job?.extendedBudgetInfo?.hourlyBudgetMin;
+                    _data['hourly_budget_max'] = job_data?.job?.extendedBudgetInfo?.hourlyBudgetMax;
                     _data['fixed_budget'] = null;
                     _data['is_job_fixed'] = false;
     
