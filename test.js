@@ -1,48 +1,55 @@
-const dotenv = require("dotenv")
-const axios = require('axios')
-const UserAgent = require('user-agents') ;
-
-dotenv.config();
-
-var data = JSON.stringify({
-  "login": {
-    "mode": "password",
-    "iovation": "",
-    "username": "ritikrks@gmail.com",
-    "rememberme": true,
-    "elapsedTime": 24605,
-    "password": "Ritik@Sahu001"
-  }
-});
-
-var config = {
-  method: 'post',
-  url: 'https://www.upwork.com/ab/account-security/login',
-  headers: { 
-    'authority': 'www.upwork.com', 
-    'accept': '*/*', 
-    'accept-language': 'en-US,en;q=0.9', 
-    'content-type': 'application/json', 
-    // 'cookie': 'G_AUTHUSER_H=0; AccountSecurity_cat=ae620091.oauth2v2_d6f5046dc7c2945823b96e9e3f413385; device_view=full; visitor_id=49.36.22.148.1651761044796000; _fbp=fb.1.1651761045851.772597837; lang=en; _pxvid=f2c4d1c7-cc7f-11ec-8b5c-74625062784e; _gcl_au=1.1.978015609.1651761054; _rdt_uuid=1651761054134.b3e726a8-f9f7-4b66-97a7-f6d040e3c492; __pdst=f4e27e7e1c94433b94637d911eb137cb; G_ENABLED_IDPS=google; _vwo_uuid_v2=D12C7A428ACA466BCC413FA33C6ED32C1|b8998a39169e4821b77beffcaf8501cc; _vwo_uuid=D12C7A428ACA466BCC413FA33C6ED32C1; _vwo_ds=3%241651761326%3A22.98677629%3A%3A; _vis_opt_exp_24_combi=1; _pxhd=NvWZylj1ZPpvVcNzZmCUm-iqFQGg6rKvMFSQzpz6J9S1PC6jJ0qGaojknl9lQX8qsgsMFf26hb8ikEYNMFCqtw==:7GnnAFmJxdIPP3iKMhxQtJ9nOj6hsZMu2dIN99S6GhnZhIzhTz9/PZ/J2-pshYQTBqrhKNsXz0i90GUxrvjsmMbKIhAgrMSFysQ8HfFmHlw=; recognized=838485b4; company_last_accessed=d37489509; current_organization_uid=1348941974253486081; visitor_gql_token=oauth2v2_f0852f14d304efd28a93e89fae531301; cookie_prefix=; cookie_domain=.upwork.com; __cf_bm=1DGeEa9YaaguNIN.r2RMEViU.lnZKTmiTv23jlDLaKc-1653723663-0-AQV65qdkOzxAkhCyL30AncICsoIsrD2NH+BnnoikyHZAJWNQSOpmEDckm36Faiw44HzvdficCAKk7tFeKzUCPL8=; __cfruid=1e8b2321e63fcfa513660ec996f3cadbdb9c1776-1653723663; _vis_opt_s=3%7C; _vis_opt_test_cookie=1; pxcts=872af433-de59-11ec-a1cc-476674787847; _vwo_sn=1962337%3A3; _sp_ses.2a16=*; OptanonConsent=consentId=bbc4f032-c4c1-42a3-a411-50f140fe6e9d&datestamp=Sat+May+28+2022+13%3A11%3A05+GMT%2B0530+(India+Standard+Time)&version=6.28.0&interactionCount=1&isGpcEnabled=0&isIABGlobal=false&hosts=&landingPath=https%3A%2F%2Fwww.upwork.com%2F&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1; _gid=GA1.2.2112349990.1653723666; _hp2_ses_props.2858077939=%7B%22ts%22%3A1653723665498%2C%22d%22%3A%22www.upwork.com%22%2C%22h%22%3A%22%2F%22%7D; AWSALB=TM6vUuCoVz0ExVThStxf6vJfHSX3YV0SNerzHthWEsHy79HY+UQXceeQszhErtPro+uQFBK4CfK/6as/4FHuH+8C0K/SrEvw91ksa7u8GsDBX6/DbqohREhqgK3A; AWSALBCORS=TM6vUuCoVz0ExVThStxf6vJfHSX3YV0SNerzHthWEsHy79HY+UQXceeQszhErtPro+uQFBK4CfK/6as/4FHuH+8C0K/SrEvw91ksa7u8GsDBX6/DbqohREhqgK3A; spt=844d3d45-f9ab-488b-8a6d-6ac1e1cd0fdf; _dpm_ses.5831=*; prodperfect_session={%22session_uuid%22:%2237dca52f-2d95-48c6-9086-54c620f99895%22}; IR_gbd=upwork.com; _clck=iw2tbo|1|f1u|0; odesk_signup.referer.raw=https%3A%2F%2Fwww.upwork.com%2Fab%2Faccount-security%2Flogin; user_oauth2_slave_access_token=360d71f4.oauth2v2_582c523c89aac1c8a43cd300b36e933a:1348941974245097472.oauth2v2_cbb944287f75189811cec017b9876a0f; XSRF-TOKEN=2d40324485b27212a7a90e13faa8791d; _pxff_fp=1; _hp2_props.2858077939=%7B%22container_id%22%3A%22GTM-WNVF2RB%22%2C%22user_context%22%3A%22unknown%22%2C%22user_logged_in%22%3Afalse%7D; _hp2_id.2858077939=%7B%22userId%22%3A%225018797116969950%22%2C%22pageviewId%22%3A%225326815478345081%22%2C%22sessionId%22%3A%225535464727598873%22%2C%22identity%22%3A%221348941974245097472%22%2C%22trackerVersion%22%3A%224.0%22%2C%22identityField%22%3Anull%2C%22isIdentified%22%3A1%7D; _px3=72051c9cb0ea9bbf6a52069c69852f3497fe25ba63a33354e6c0cbdf9145152a:aROkxj9KTrIYINHyB2ami8/N49UiZJ2Htr6AKS78rdG2hq5Tsx+wxq17jF/vEdo3WN9dbVmp6USixEwxlhAT+w==:1000:d0g0zRPtlIhYmjZUUCgtzuEHpUuDCyswS1vi3pygpn9rha5Ofwtb0fHjg5V7WubYOXBpCRESUIKiLwr1luumGDIHK+N52X4A1OO9gwwkdKFC1Q6OeRy4sQt1fC+RMbwc2Bh6A7ZpJvdy9s4b2kUYg5Yi7oiVCf7hW6tY47+kiKr3FABwrXdklCPUvdmNihjsc1eCv9jPzUVr2OMCRYkvYQ==; _dpm_id.5831=94b37130-b93b-4885-8fd7-8359114405ec.1651761054.4.1653724011.1653459920.8bc03f7f-dd9f-4d97-9f17-59230f89f767; IR_13634=1653724010657%7C0%7C1653724010657%7C%7C; _uetsid=89a1cfc0de5911ec94a5bf8091c0d440; _uetvid=b94f0290cc7f11ecbc1cf93e15b3d22c; _clsk=yn6jc3|1653724011404|5|0|d.clarity.ms/collect; enabled_ff=!CI10270Air2Dot5QTAllocations,!SSINav,OTBnrOn,CI11132Air2Dot75,!CI10857Air3Dot0,!air2Dot76,!air2Dot76Qt,!CI12577UniversalSearch,!OTBnr,CI9570Air2Dot5; _ga=GA1.2.369265907.1651761054; _gat_UA-62227314-1=1; _ga_KSM221PNDX=GS1.1.1653723665.7.1.1653724013.0; _sp_id.2a16=1a629691-f367-4836-b893-8cada1b29ffd.1651761043.6.1653724034.1653459920.71a6a0c8-fd0e-4dcf-b663-a06b38a00168; master_refresh_token=360d71f4.oauth2v2_9c436680db689db7871dc4ab0b45de69.1; SZ=64ec8f9077262e1efa6675f0e39f2eba422f248a2a2c6eaef79fc7b0b233f214; __cfruid=40332d9502274636c5954f7c75920ede76813a64-1653730703; company_last_accessed=d1014702010; console_user=838485b4; master_access_token=360d71f4.oauth2v2_44cff909feba709c88a2fa97f1a268bf; oauth2_global_js_token=oauth2v2_472a399b0cdb5a9d0ca1636e6e1c060c; recognized=838485b4; user_uid=1348941974245097472; visitor_id=49.36.22.148.1651761044796000; _pxhd=NvWZylj1ZPpvVcNzZmCUm-iqFQGg6rKvMFSQzpz6J9S1PC6jJ0qGaojknl9lQX8qsgsMFf26hb8ikEYNMFCqtw==:7GnnAFmJxdIPP3iKMhxQtJ9nOj6hsZMu2dIN99S6GhnZhIzhTz9/PZ/J2-pshYQTBqrhKNsXz0i90GUxrvjsmMbKIhAgrMSFysQ8HfFmHlw=; enabled_ff=CI11132Air2Dot75,!CI10270Air2Dot5QTAllocations,!SSINav,!CI12577UniversalSearch,!air2Dot76Qt,!OTBnr,!CI10857Air3Dot0,!air2Dot76,CI9570Air2Dot5,OTBnrOn', 
-    'origin': 'https://www.upwork.com', 
-    'referer': 'https://www.upwork.com/ab/account-security/login', 
-    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="101", "Google Chrome";v="101"', 
-    'sec-ch-ua-mobile': '?0', 
-    'sec-ch-ua-platform': '"Windows"', 
-    'sec-fetch-dest': 'empty', 
-    'sec-fetch-mode': 'cors', 
-    'sec-fetch-site': 'same-origin', 
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36', 
-    // 'x-odesk-csrf-token': '2d40324485b27212a7a90e13faa8791d', 
-    'x-requested-with': 'XMLHttpRequest'
-  },
-  data : data
-};
-
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);
-});
+_pxhd=ghEETzY7V8tKK6tn0Ke8VcJdq6so9aZjL25QkIqUlmxfriwuyX02ixGxx0hHYlAg9wL-7JqLGUAH5BxID3vNHg==:PaDoJLeGDjkek7zKufJduoO3etIKQShCMESPEUQuuBDQSBUmA50S6tqxld-2D5LkJnXnOy6prHSmyzL6auE9k-aGE2adI06TZXncXgRncGM=
+visitor_id=49.36.23.34.1647429141315000
+_sp_id.2a16=f111039c-69c1-44c6-b057-3969781fe131.1647429142.29.1654087180.1654005269.01e9f4c3-128d-4193-aadb-bf16c26e62e0
+_gcl_au=1.1.773246489.1647429143
+_rdt_uuid=1647429142786.9d4fb4ff-72c4-4028-9867-1e9dbc5c1e4c
+_ga_KSM221PNDX=GS1.1.1654084802.31.1.1654087100.0
+_ga=GA1.2.1286569082.1647429143
+__pdst=364b8f345f8946e9a4a451c95942a775
+_hp2_props.2858077939=%7B%22container_id%22%3A%22GTM-WNVF2RB%22%2C%22user_context%22%3A%22unknown%22%2C%22user_logged_in%22%3A%22unknown%22%7D
+_hp2_id.2858077939=%7B%22userId%22%3A%225417316835947367%22%2C%22pageviewId%22%3A%228492960022085678%22%2C%22sessionId%22%3A%224365031098764814%22%2C%22identity%22%3A%221529072754826874880%22%2C%22trackerVersion%22%3A%224.0%22%2C%22identityField%22%3Anull%2C%22isIdentified%22%3A1%2C%22oldIdentity%22%3Anull%7D
+_dpm_id.5831=a832a4d6-bf18-46e9-b035-0a6febce7686.1647429143.24.1654087103.1654005271.029917e5-bc6e-4497-82a5-fb1ee5548f12
+spt=e7d99e65-a7bf-4828-b72c-38ac6bca5678
+_fbp=fb.1.1647429146369.1797116620
+_clck=13gtwxl|1|f1y|0
+lang=en
+OptanonConsent=isGpcEnabled=0&datestamp=Wed+Jun+01+2022+17%3A08%3A15+GMT%2B0430+(Afghanistan+Time)&version=6.28.0&isIABGlobal=false&hosts=&consentId=f24103d2-7211-40b9-801e-f969603dcf37&interactionCount=1&landingPath=https%3A%2F%2Fwww.upwork.com%2F&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A1
+cb_user_id=null
+cb_group_id=null
+cb_anonymous_id=%222042e264-94ec-49b7-910d-a8bb493e89a8%22
+_pxvid=f3147d1b-a519-11ec-9413-706a4c754263
+G_ENABLED_IDPS=google
+recognized=441bef9f
+company_last_accessed=d1015726249
+DA_a1d306b9=5b14fd918da839c87000f1299556285197d8241f708ed24b4f01137d2c3fd08e
+keen={%22uuid%22:%22e3b69c19-3ece-4416-88c9-b75f7fc57a36%22%2C%22initialReferrer%22:%22https://www.upwork.com/nx/jobs/search/?client_hires=1-9%2C10-&amount=5000-&payment_verified=1&duration_v3=ongoing&q=webscraping&sort=recency&t=0%2C1%22}
+UserPrivacySettings=%7B%22AlertBoxClosed%22%3A%222022-05-24T11%3A37%3A19.373Z%22%2C%22Groups%22%3A%7B%22Targeting%22%3Atrue%7D%7D
+DA_441bef9f=021ecc8868029d99bacaf062386e2f61b67830571aed15eb76093e77448454e1
+device_view=full
+visitor_signup_gql_token=oauth2v2_aade81dcad431452c4f3b5e5f58fb1e5
+_px3=9dcebbf7f8a9d6c1b09d66f94b13f929fc198430b979a6f5c954d84ee99a98c7:m6TODGZx+lgmISfQUqSFQr6vsPZbE8FVqDHuRGmrmev+5+wwQep2ncr5+Vd9OqvkXhZBTOsymI+yBYCP21VlzQ==:1000:KRct0wT/U6b5HVn35v0PbNDTUgHEtMkc/S1SucNsXYPjK/ZmaxI7Zs13AMyvIVTGdqkEFpPgRgHS39hNtshA2JqABb4EubPBp5SRUm/osMz4o6UHVRwx13RIF7FhJpUpgAImnQk7Lq/yDn0giF3Q4S9wlLpfOTSk4IcXnJiCBnNHpCQ6Fh1Mwk5HHHTf9u4vCoRwOrV3vAOlgPZDZ0JddA==
+_gid=GA1.2.237478360.1654002767
+_clsk=1kt7w22|1654087105398|10|1|www.clarity.ms/eus-c/collect
+IR_PI=94ecfd08-e0e3-11ec-ba66-4778787d65c3%7C1654091581269
+visitor_gql_token=oauth2v2_a0c188ff06e938d77493d17fba915f53
+AWSALB=AJsMbQu7DZkQ1C4Q5dYHQBECuXJR0Jdniqq985kftbwUGz3UgKsyYz3aGXFqa5KgCmhAlijTISSf3Y6rrfUUiF+FXYzQvCMhi3Ah0NYvLje9+5sd/sChy6n7GkRB
+AWSALBCORS=AJsMbQu7DZkQ1C4Q5dYHQBECuXJR0Jdniqq985kftbwUGz3UgKsyYz3aGXFqa5KgCmhAlijTISSf3Y6rrfUUiF+FXYzQvCMhi3Ah0NYvLje9+5sd/sChy6n7GkRB
+__cf_bm=3vbEgIzmja5aKk9oTRuLjuslTA6jCwP4mu771erk7gM-1654087094-0-AffpPWCLBgSsBJ52X4J5VorIwa1nfe2X9NpUGL8d/KClOGVRqVrGtDABcbLgnYZlO3Yqj5umhubTT46zxmUVeR8=
+_sp_ses.2a16=*
+_dpm_ses.5831=*
+prodperfect_session={%22session_uuid%22:%22c99b8d9e-f404-4026-ad38-0bb2a381071a%22}
+current_organization_uid=1529072754826874881
+user_oauth2_slave_access_token=e99ce43f.oauth2v2_9255bf95ef44054c5702e1e360defd2b:1529072754826874880.oauth2v2_3ce35b42df1a1b7b840a55a195035bd4
+_hp2_ses_props.2858077939=%7B%22r%22%3A%22https%3A%2F%2Fwww.upwork.com%2Fab%2Faccount-security%2Flogin%22%2C%22ts%22%3A1654084819489%2C%22d%22%3A%22www.upwork.com%22%2C%22h%22%3A%22%2Fnx%2Ffind-work%2Fbest-matches%22%7D
+odesk_signup.referer.raw=https%3A%2F%2Fwww.upwork.com%2Fnx%2Fsignup%2F%3Fdest%3Dhome
+enabled_ff=!air2Dot76Qt,!CI12577UniversalSearch,CI9570Air2Dot5,!SSINav,OTBnrOn,!air2Dot76,!CI10270Air2Dot5QTAllocations,CI11132Air2Dot75,!CI10857Air3Dot0,!OTBnr
+cookie_prefix=
+cookie_domain=.upwork.com
+__cfruid=d06c09d3b20a326cd8e4bf141917a49037c0866d-1654087094
+pxcts=b51453b2-e1a7-11ec-897d-545a48626f72
+XSRF-TOKEN=198a5520dfc69d216ce27631a9912894
+restriction_verified=1
+IR_gbd=upwork.com
+IR_13634=1654087103309%7C0%7C1654087103309%7C%7C
+_uetsid=69806ee0e0e311ec9ad585cef38e599c
+_uetvid=f42d7470a51911ec91bd3bd29d2f85c9
