@@ -21,4 +21,19 @@ async function testURL(url, is_login= false) {
     return details;
 }
 
-module.exports = {makeUrl, getJobDetails, getPageDetails, testURL} ;
+function random_password_generate(max,min, charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#@!%&()/")
+{
+    const passwordChars = charset;
+    var randPwLen = Math.floor(Math.random() * (max - min + 1)) + min;
+    var randPassword = Array(randPwLen).fill(passwordChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+    return randPassword;
+}
+
+function random_email_generate()
+{
+    const emailChars = "0123456789abcdefghijklmnopqrstuvwxyz";
+    const randEmLen = Math.floor(Math.random() * (12 - 6 + 1)) + 6;
+    const randEmail = Array(randEmLen).fill(emailChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+    return randEmail+'.'+random_password_generate(4,2,'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')+'+'+random_password_generate(4,2,'0123456789')+'@gmail.com';
+}
+module.exports = {makeUrl, getJobDetails, getPageDetails, testURL, random_password_generate, random_email_generate} ;
