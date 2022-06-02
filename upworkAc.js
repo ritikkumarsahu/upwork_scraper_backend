@@ -3,6 +3,7 @@ const Charlatan = require('charlatan');
 const moment = require('moment');
 const fs = require('fs');
 const {getIpDetails, getProxies} = require('./proxy')
+const {random_password_generate, random_email_generate} = require('./utils')
 const dotenv = require("dotenv")
 
 dotenv.config()
@@ -28,46 +29,11 @@ async function prepareBrowser(proxies) {
 
     return context;
 }
-function random_password_generate(max,min, charset="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz#@!%&()/")
-{
-    const passwordChars = charset;
-    var randPwLen = Math.floor(Math.random() * (max - min + 1)) + min;
-    var randPassword = Array(randPwLen).fill(passwordChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
-    return randPassword;
-}
 
-function random_email_generate()
-{
-    const emailChars = "0123456789abcdefghijklmnopqrstuvwxyz";
-    const randEmLen = Math.floor(Math.random() * (12 - 6 + 1)) + 6;
-    const randEmail = Array(randEmLen).fill(emailChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
-    return randEmail+'.'+random_password_generate(4,2,'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz')+'+'+random_password_generate(4,2,'0123456789')+'@gmail.com';
-}
-
-async function waitForTimeout (page, timeout) {
-    await page.evaluate((timeout) => {
-        // if this doesn't work, you can try to increase 0 to a higher number (i.e. 100)
-        return new Promise((resolve) => setTimeout(resolve, timeout));
-      },timeout);
-}
-
-async function submitForm(page) {
-    try {
-        await Promise.all([
-            page.waitForNavigation({timeout: 3000}),
-            page.click(`#button-submit-form`),
-        ]);
-    } catch (e) {
-        if (e.name === 'TimeoutError') {
-            await Promise.all([
-                page.waitForNavigation(),
-                page.click(`#button-submit-form`),
-            ]);
-        }
-    }
-}
-
-async function createAccount(page, {firstname, lastname, email, password}) {
+async function createAccount({firstname, lastname, email, password}) {
+    const proxies = await getProxies();
+    const browser = await prepareBrowser(proxies[0]);
+    const page = await browser.newPage();
     const url = 'https://www.upwork.com/nx/signup/';
     await page.goto(url);
     const offset = new Date().getTimezoneOffset()/60 * -1;
@@ -142,12 +108,7 @@ async function createAccount(page, {firstname, lastname, email, password}) {
             console.log(json_res);
             if (json_res?.user === undefined || json_res?.user === null) 
                 throw new Error("unable to create new account");
-            const headers = Array.from(response.headers.entries()).reduce((prev,cur) => {
-                prev[cur[0]] = cur[1];
-                return prev;
-            }, {})
-            console.table(headers);
-            return headers;
+            return payload;
         } catch (error) {
             console.log("couldn't register the new account", error);
             return null;
@@ -155,15 +116,40 @@ async function createAccount(page, {firstname, lastname, email, password}) {
     }, payload);
     if (resp !== null) console.log('account created');
     else console.log("unable to create new account");
+    await browser.browser().close();
     return resp;
 }
 
-async function loginAccount(page, {email, password}, payload=null, error=false) {
-    const url = 'https://www.upwork.com/ab/account-security/login?redir=%2Fsignup%2Fhome';
-    await page.goto(url);
+async function loginAccount({email, password}, browser=null, proxies=null, page=null, payload=null, error=false) {
+
+    if (error === false) {
+        proxies = await getProxies();
+        browser = await prepareBrowser(proxies[0]);
+        page = await browser.newPage();
+        const url = 'https://www.upwork.com/ab/account-security/login?redir=%2Fsignup%2Fhome';
+        await page.goto(url);
+    }
+    if (page === null) {
+        proxies = await getProxies();
+        browser = await prepareBrowser(proxies[0]);
+        page = await browser.newPage();
+    }
     if (payload === null) {
         payload = {"login":{"mode":"password","iovation":"","username":email,"rememberme":false,"elapsedTime":24405,"password":password}};
-     }
+    }
+    // [
+    //     'AccountSecurity_cat',   
+    //     'DA_a1d306b9',
+    //     'DA_441bef9f',
+    //     'device_view',
+    //     'user_oauth2_slave_access_token',
+    //     'odesk_signup.referer.raw',
+    //     '__cfruid',
+    //     '_sp_ses.2a16',
+    //     'clob_signup_cookie',    
+    //     '__cf_bm'
+    // ]
+    // extra_cookies = await browser.cookies('')
     const result = await page.evaluate(async (payload) => {
         const cookie_string = document.cookie;
         const XSRF_cookie = document.cookie.split('; ').reduce((prev, current) => {
@@ -251,90 +237,117 @@ async function loginAccount(page, {email, password}, payload=null, error=false) 
     if (result?.message?.error === "securityCheckCertificate error" && error === false) {
         // headers.set('cookie', document.cookie);
         payload = Object.assign(payload, {"securityCheckCertificate":result?.message?.securityCheckCertificate, "authToken":result?.message?.authToken});
-        return loginAccount(page,{email, password}, payload=payload, error=true);
+        return loginAccount({email, password}, browser, proxies, page, payload=payload, error=true);
     }
     if (result.status == 'error') {
         console.log('Unable to Login to the account! try again!'); 
+        await browser.browser().close();
         return null;
     }
     console.log('Logged in successfully!');
-    // await page.context().addCookies(cookies);
-    const browser_cookies = await  page.context().cookies();
-    let cookie_string = ''
-    browser_cookies.forEach((v) => {
-        cookie_string += `${v.name}=${v.value}; `;
-    })
-    fs.writeFileSync(`cookies/cookies.json`, cookie_string);
-    return result?.cookies;
+    // await browser.addCookies(cookies);
+    const browser_cookies = await  browser.cookies();
+    await browser.browser().close();
+    return browser_cookies;
 }
 
-async function closeAccount(page) {
+async function closeAccount(cookies) {
+    const proxies = await getProxies();
+    const browser = await prepareBrowser(proxies[0]);
+    browser.addCookies(cookies);
+    const page = await browser.newPage();
     const url = "https://www.upwork.com/ab/account-security/password-and-security"
     await page.goto(url);
-    await page.click(`#button-security-question`, {noWaitAfter: true});
-    await waitForTimeout(page, 1000);
-    await page.locator(`//input[@id='securityQuestion_lockingNotice']`).check({ force: true });
-    const sec_ans = await page.waitForSelector(`#securityQuestion_answer`);
-    await sec_ans.type('jethalal', {delay: 100});
-    
-    await page.click(`#control_save`);
-    await waitForTimeout(page, 1000);
-    try {
-        const pwd = await page.waitForSelector(`#sensitiveZone_password`, { timeout: 5000 });
-        await pwd.type(personDetails.password, {delay: 100});
-        await page.click(`//button[@id='control_save'][@target-form="sensitiveZone"]`);
-        // ...`enter code here`
-    } catch (error) {
+    const payload = {"reason":"182"}
+    const result = await page.evaluate(async (payload) => {
+        const cookie_string = document.cookie;
+        const XSRF_cookie = document.cookie.split('; ').reduce((prev, current) => {
+            const [name, ...value] = current.split('=');
+            prev[name] = value.join('=');
+            return prev;
+            }, {})['XSRF-TOKEN'];
 
-    }
-    
-    // 
-    // #control_save
-
-    // closing the account
-    // https://www.upwork.com/nx/client-info/
-    // document.querySelector(`main[id='main']:not([tabindex])`).querySelector(`div[class="up-card mx-md-0 mb-xs-0"]`).querySelector('button:last-child')
-
+        const headers = new Headers({
+            'authority': 'www.upwork.com',
+            'accept': 'application/json, text/plain, */*',
+            'accept-language': 'en-US,en;q=0.9',
+            'accept-encoding': 'gzip, deflate, br',
+            'content-type': 'application/json',
+            'cookie': cookie_string,
+            'origin': 'https://www.upwork.com',
+            'referer': 'https://www.upwork.com/nx/signup/?dest=home',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': navigator.userAgent,            
+            'x-odesk-csrf-token': XSRF_cookie,
+            'x-odesk-user-agent': 'oDesk LM',
+            'x-requested-with': 'XMLHttpRequest',
+            'TE': 'trailers'
+        });
+        const requestOptions = {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(payload),
+            redirect: 'follow'
+        };
+        try {
+            const response = await fetch("https://www.upwork.com/freelancers/settings/api/v1/deactivate-account", requestOptions);
+            const json_res = await response.json();
+            console.log(json_res);
+            return true;
+        } catch (err) {
+            console.log("couldn't delete account", error);
+            return false;
+        }
+    }, payload);
+    await browser.browser().close();
+    if (result === true) {
+        console.log('account deleted successfully!');
+        return true;
+    } 
+    return null;
     
 
 }
 
-(async function main() {
-    const proxies = await getProxies(country='IT');
-    const personDetails = {
-        "firstname": "Alden",
-        "lastname": "Stark",
-        "email": "0rjz8h.Mr+597@gmail.com",
-        "password": "BG@V0PHkfqU",
-        "country": "Italy",
-        "country-code": "IT",
-        "date_created": "2022-06-01 14:32:27"
-    }
-    // const personDetails = {
-    //     firstname: Charlatan.Name.firstName().replace(/[^\x00-\x7F]/g, ""),
-    //     lastname: Charlatan.Name.lastName().replace(/[^\x00-\x7F]/g, ""),
-    //     email: random_email_generate(),
-    //     'password': random_password_generate(16,8),
-    //     country: new Intl.DisplayNames(['en'], {type: 'region'}).of(proxies[0].country_code),
-    //     'country-code': proxies[0].country_code,
-    //     date_created: moment().utc().format('YYYY-MM-DD HH:mm:ss')
-    // }
-    console.log(JSON.stringify(personDetails,null,4));
+// (async function main() {
+//     const proxies = await getProxies(country='IT');
+//     const personDetails = {
+//         "firstname": "Hershel",
+//         "lastname": "Macejkovic",
+//         "email": "qvu2v23b8u7k.jj9+575@gmail.com",
+//         "password": "oxFdVq9#",
+//         "country": "Italy",
+//         "country-code": "IT",
+//         "date_created": "2022-06-02 13:41:51"
+//     };
+//     // const personDetails = {
+//     //     firstname: Charlatan.Name.firstName().replace(/[^\x00-\x7F]/g, ""),
+//     //     lastname: Charlatan.Name.lastName().replace(/[^\x00-\x7F]/g, ""),
+//     //     email: random_email_generate(),
+//     //     'password': random_password_generate(16,8),
+//     //     country: new Intl.DisplayNames(['en'], {type: 'region'}).of(proxies[0].country_code),
+//     //     'country-code': proxies[0].country_code,
+//     //     date_created: moment().utc().format('YYYY-MM-DD HH:mm:ss')
+//     // }
+//     console.log(JSON.stringify(personDetails,null,4));
 
-    const browser = await prepareBrowser(proxies[0]);
-    // let page = await browser.newPage();
-    // const c = await createAccount(page, personDetails);
-    // console.log(c);
-    // await browser.clearCookies();
-    // await page.close();
-    // function sleep(ms) {
-    //     return new Promise((resolve) => setTimeout(resolve, ms));
-    //   }
+//     // const browser = await prepareBrowser(proxies[0]);
+//     // let page = await browser.newPage();
+//     // const c = await createAccount(page, personDetails);
+//     // console.log(c);
+//     // await browser.clearCookies();
+//     // await browser.browser().close();
+//     function sleep(ms) {
+//         return new Promise((resolve) => setTimeout(resolve, ms));
+//       }
     
-    // await sleep(10000);
-    page = await browser.newPage();
-    const d = await loginAccount(page, personDetails);
-    console.log(d);
-    // await closeAccount(page);
+//     // await sleep(10000);
+//     const c = await loginAccount(proxies[1], personDetails);
+//     // await sleep(60000);
+//     await closeAccount(proxies[1], c);
     
-})();
+// })();
+
+module.exports = {createAccount, loginAccount, closeAccount};
