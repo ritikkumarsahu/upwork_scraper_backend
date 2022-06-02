@@ -6,17 +6,17 @@ const {getIpDetails, getProxies} = require('./proxy')
 // TODO: check if cookies are expired
 async function is_logged_in(username){
     try {
-        const cookies_file = fs.readFileSync('./cookies/'+username+'_cookies.json', 'utf8');
+        const cookies_file = fs.readFileSync('./cookies/cookies.json', 'utf8');
         if (cookies_file !== null) {
             const cookies = JSON.parse(cookies_file);
-            user_token = cookies.find(cookie => {
-                return cookie.name === 'user_oauth2_slave_access_token';
-            });
-            if (user_token !== undefined) {
-                const epoch = Math.floor(new Date().getTime() / 1000);
-                // TODO: make it >=
-                if (user_token.expires <= epoch) return cookies;
-            }
+            return cookies;
+            // user_token = cookies.find(cookie => {
+            //     return cookie.name === 'user_oauth2_slave_access_token';
+            // });
+            // if (user_token !== undefined) {
+            //     const epoch = Math.floor(new Date().getTime() / 1000);
+            //     if (user_token.expires >= epoch) return cookies;
+            // }
         }
     }
     catch (e) {return null;}
