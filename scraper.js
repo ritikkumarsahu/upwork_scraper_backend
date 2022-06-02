@@ -1,6 +1,8 @@
 const moment = require('moment');
-const {getPageDetails, testURL } = require("./utils");
+const { getPageDetails, testURL, random_password_generate, random_email_generate } = require("./utils");
+const { createAccount, loginAccount, closeAccount } = require("./upworkAc");
 const fs = require("fs");
+const Charlatan = require('charlatan');
 const dotenv = require("dotenv")
 
 dotenv.config()
@@ -13,15 +15,47 @@ class Scraper {
         this.countries = Array.from(countries);
         this.last_posted = Math.round((moment().startOf('day') - moment(last_posted))/86400000);
         this.data = [];
-        this.is_login = false;
+        this.is_login = true;
         this.save_dir = './job_data/';
         this.data_dir = './data/';
+        this.cookie_dir = './cookies/';
         if (!fs.existsSync(this.save_dir)){
             fs.mkdirSync(this.save_dir);
         }
         if (!fs.existsSync(this.data_dir)){
             fs.mkdirSync(this.data_dir);
         }
+        if (!fs.existsSync(this.cookie_dir)){
+            fs.mkdirSync(this.cookie_dir);
+        }
+    }
+
+    async init() {
+        if (this.is_login === false) return false;
+        const personDetails = {
+            firstname: Charlatan.Name.firstName().replace(/[^\x00-\x7F]/g, ""),
+            lastname: Charlatan.Name.lastName().replace(/[^\x00-\x7F]/g, ""),
+            email: random_email_generate(),
+            'password': random_password_generate(16,8),
+            date_created: moment().utc().format('YYYY-MM-DD HH:mm:ss')
+        }
+        let res = await createAccount(personDetails);
+        if (res === null) {
+            this.is_login = false;
+            return null;
+        } else {
+            console.log(personDetails);
+            personDetails.country = res?.userAccount?.country;
+        }
+        res = await loginAccount(personDetails);
+        if (res === null) {
+            this.is_login = false;
+            return null;
+        } else {
+            this.cookies = res;
+            fs.writeFileSync(this.cookie_dir+'cookies.json', JSON.stringify(res));
+        }
+        return true;
     }
     async save_data() {
         console.log("saving the data for "+ this.keyword);
@@ -198,12 +232,15 @@ class Scraper {
             page++;
         }
         console.log(`Download Your file: 'job_data/${this.keyword}.json'`);
+        await closeAccount(this.cookies);
+        fs.unlinkSync(this.cookie_dir+'cookies.json');
         return this.data;
     }
 }
 
 async function main() {
-    const k = new Scraper('MACHINE LEARNING', 10000, "2022-05-01",["india"]);
+    const k = new Scraper('MACHINE LEARNING', 10000, "2022-05-25",["india"]);
+    await k.init();
     await k.scrape();
     // const data = require('./dummy');
     // console.log(data.length);
