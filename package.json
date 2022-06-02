@@ -15,5 +15,8 @@
     "moment": "^2.29.3",
     "playwright": "^1.21.1",
     "user-agents": "^1.0.1005"
+  },
+  "devDependencies": {
+    "charlatan": "^1.1.0"
   }
 }
