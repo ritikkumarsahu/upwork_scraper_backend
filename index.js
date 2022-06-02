@@ -8,6 +8,7 @@ dotenv.config()
 http.createServer(async (req, res) => {
     const query = url.parse(req.url,true).query;
     const scraper = new Scraper(query.keyword, parseInt(query.client_spent), query.last_posted, String(query.countries).split(','));
+    await scraper.init();
     const response = await scraper.scrape();
     res.writeHead(
         200, 
