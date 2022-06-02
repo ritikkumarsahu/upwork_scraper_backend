@@ -43,11 +43,15 @@ async function getIpDetails(proxy) {
   return response;
 }
 
-async function getProxies() {
+async function getProxies(country=null) {
     const proxies = []
+    let url = 'https://proxy.webshare.io/api/proxy/list/';
+    if(country !== null){
+      url = url + '?countries=' + country
+    }
     let config = {
         method: 'get',
-        url: 'https://proxy.webshare.io/api/proxy/list/',
+        url: url,
         headers: { 
           'Authorization': `Token ${process.env.WEBSHARE_API_KEY}`
         }
