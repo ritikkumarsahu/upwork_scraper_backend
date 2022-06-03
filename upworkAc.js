@@ -11,7 +11,7 @@ dotenv.config()
 async function prepareBrowser(proxies) {
     const res = await getIpDetails(proxies);
     const browser = await playwright.firefox.launch({
-        headless: false, // Show the browser. 
+        headless: true, // Show the browser. 
         firefoxUserPrefs: {
             "media.peerconnection.enabled" : false
         },
