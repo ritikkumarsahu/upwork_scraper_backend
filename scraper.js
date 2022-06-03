@@ -228,6 +228,11 @@ class Scraper {
                 console.log('All pages grabbed! Finished!');
                 break;
             }
+            // return when lastposted date is exceeded
+            if (this.is_login && Math.round((moment().utc(0).startOf('day') - moment(page_data['searchResults']['jobs'][0]?.createdOn).utc(0)) / 86400000) > this.last_posted) {
+                console.log('All Jobs grabbed till ' + page_data['searchResults']['jobs'][0]?.createdOn+ ' ! Finished!');
+                break;
+            }
             const job_links = this.filter_page_jobs(Array.from(page_data['searchResults']['jobs']));
             console.log(`filtering the ${this.is_login? job_links.length/2: job_links.length}/${page_data['searchResults']['jobs'].length} links`);
             await this.filter_jobs(job_links);
