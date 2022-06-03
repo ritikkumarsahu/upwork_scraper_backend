@@ -203,8 +203,12 @@ class Scraper {
             total = metrics.searchResults.paging.total;
             total_pages = Math.ceil(total/metrics['searchResults']['paging']['count']);
         }
-
-        while (offset+per_page <= total) {
+        console.log({
+            'keyword':this.keyword,
+            'Found total jobs': total,
+            'Found total pages': total_pages,
+        });
+        while (offset <= total) {
             let page_data = await getPageDetails(this.keyword,page,per_page, this.is_login);
             if (page_data.length <= 0) {
                 console.error('Page not found!');
@@ -216,11 +220,11 @@ class Scraper {
                 console.error(`Found garbage response! Requesting the page #${page} again.`);
                 continue;
             }
-            total = page_data.searchResults.paging.total;
+            // total = page_data.searchResults.paging.total;
             offset = page_data.searchResults.paging.offset;
-            total_pages = Math.ceil(total/page_data['searchResults']['paging']['count']);
+            // total_pages = Math.ceil(total/page_data['searchResults']['paging']['count']);
             console.log(`Grabed page #${page}/${total_pages}...`);
-            if ((page > total_pages) && ((total - offset)<=0)){
+            if ((page > total_pages) && ((total - (offset + per_page))<=0)){
                 console.log('All pages grabbed! Finished!');
                 break;
             }
@@ -229,11 +233,14 @@ class Scraper {
             await this.filter_jobs(job_links);
             this.save_data();
             console.log(`File #%${page} saved!`);
+
             page++;
         }
         console.log(`Download Your file: 'job_data/${this.keyword}.json'`);
-        await closeAccount(this.cookies);
-        fs.unlinkSync(this.cookie_dir+'cookies.json');
+        if (this.is_login === true) {
+            await closeAccount(this.cookies);
+            fs.unlinkSync(this.cookie_dir+'cookies.json');
+        }
         return this.data;
     }
 }
