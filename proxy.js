@@ -1,6 +1,7 @@
 const axios = require('axios')
 const UserAgent = require('user-agents') ;
 const os = require('os');
+const fs = require("fs");
 
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
@@ -44,27 +45,28 @@ async function getIpDetails(proxy) {
 }
 
 async function getProxies(country=null) {
-    const proxies = []
-    let url = 'https://proxy.webshare.io/api/proxy/list/';
-    if(country !== null){
-      url = url + '?countries=' + country
-    }
-    let config = {
-        method: 'get',
-        url: url,
-        headers: { 
-          'Authorization': `Token ${process.env.WEBSHARE_API_KEY}`
-        }
-      };
-      let res = {};
-      while (config.url !== "" && config.url !== undefined && config.url !== null) {
-        res = await axios(config);
-        if(res.status == 200){
-          res = res.data;
-          config.url = res.next;
-          proxies.push(...res.results);
-        }
-      }
+    const proxies =  JSON.parse(fs.readFileSync('./proxies.json', 'utf8'));
+
+    // let url = 'https://proxy.webshare.io/api/proxy/list/';
+    // if(country !== null){
+    //   url = url + '?countries=' + country
+    // }
+    // let config = {
+    //     method: 'get',
+    //     url: url,
+    //     headers: { 
+    //       'Authorization': `Token ${process.env.WEBSHARE_API_KEY}`
+    //     }
+    //   };
+    //   let res = {};
+    //   while (config.url !== "" && config.url !== undefined && config.url !== null) {
+    //     res = await axios(config);
+    //     if(res.status == 200){
+    //       res = res.data;
+    //       config.url = res.next;
+    //       proxies.push(...res.results);
+    //     }
+    //   }
       return shuffle(proxies);
 }
 

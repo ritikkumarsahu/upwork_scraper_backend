@@ -1,0 +1,1402 @@
+[
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.129.124.95",
+        "ports": {
+            "http": 6616,
+            "socks5": 6616
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:48.212682-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "23.229.109.125",
+        "ports": {
+            "http": 6151,
+            "socks5": 6151
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:44.991297-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Mcmechen"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.95.1.57",
+        "ports": {
+            "http": 6579,
+            "socks5": 6579
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:09.457926-07:00",
+        "country_code": "FR",
+        "country_code_confidence": 0.6,
+        "city_name": "Saint-Denis"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "66.150.70.23",
+        "ports": {
+            "http": 6711,
+            "socks5": 6711
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:47.251878-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "104.227.1.252",
+        "ports": {
+            "http": 7848,
+            "socks5": 7848
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:42.312169-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Seattle"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "107.152.190.108",
+        "ports": {
+            "http": 7129,
+            "socks5": 7129
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:25.895176-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.87.248.70",
+        "ports": {
+            "http": 7593,
+            "socks5": 7593
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:55.204250-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.4,
+        "city_name": null
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.135.39.17",
+        "ports": {
+            "http": 7097,
+            "socks5": 7097
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:13.887238-07:00",
+        "country_code": "SC",
+        "country_code_confidence": 0.4,
+        "city_name": null
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.192.156.137",
+        "ports": {
+            "http": 6808,
+            "socks5": 6808
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:33.641776-07:00",
+        "country_code": "RS",
+        "country_code_confidence": 1.0,
+        "city_name": "Belgrade"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.85.160.127",
+        "ports": {
+            "http": 7219,
+            "socks5": 7219
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:12:15.055055-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Baltimore"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.21.38.218",
+        "ports": {
+            "http": 5800,
+            "socks5": 5800
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:21.597065-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Stillwater"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.136.228.15",
+        "ports": {
+            "http": 6070,
+            "socks5": 6070
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:53.012314-07:00",
+        "country_code": "IL",
+        "country_code_confidence": 0.6,
+        "city_name": "Merkaz Shapira"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.192.138.52",
+        "ports": {
+            "http": 6694,
+            "socks5": 6694
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:47.827826-07:00",
+        "country_code": "NO",
+        "country_code_confidence": 1.0,
+        "city_name": "Oslo"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "185.245.26.115",
+        "ports": {
+            "http": 6632,
+            "socks5": 6632
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:57.530567-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Washington"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "179.61.248.165",
+        "ports": {
+            "http": 5256,
+            "socks5": 5256
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:20.027262-07:00",
+        "country_code": "DE",
+        "country_code_confidence": 0.6,
+        "city_name": "Frankfurt Am Main"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.16.243.6",
+        "ports": {
+            "http": 6150,
+            "socks5": 6150
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:10.174686-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Las Vegas"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.92.112.16",
+        "ports": {
+            "http": 5037,
+            "socks5": 5037
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:48.484212-07:00",
+        "country_code": "GB",
+        "country_code_confidence": 1.0,
+        "city_name": "London"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.12.103.241",
+        "ports": {
+            "http": 6624,
+            "socks5": 6624
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:43.773561-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Washington"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "144.168.149.53",
+        "ports": {
+            "http": 7102,
+            "socks5": 7102
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:26.239617-07:00",
+        "country_code": "ES",
+        "country_code_confidence": 1.0,
+        "city_name": "Granada"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.152.200.107",
+        "ports": {
+            "http": 9653,
+            "socks5": 9653
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:59.776249-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.155.70.116",
+        "ports": {
+            "http": 8126,
+            "socks5": 8126
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:12.342144-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "185.101.169.92",
+        "ports": {
+            "http": 6636,
+            "socks5": 6636
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:46.955459-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Reston"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.12.103.180",
+        "ports": {
+            "http": 6563,
+            "socks5": 6563
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:42.341622-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Washington"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.146.180.21",
+        "ports": {
+            "http": 9091,
+            "socks5": 9091
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:58.566011-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.92.124.1",
+        "ports": {
+            "http": 5029,
+            "socks5": 5029
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:48.125342-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 1.0,
+        "city_name": "The Hague"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "156.238.5.202",
+        "ports": {
+            "http": 5543,
+            "socks5": 5543
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:45.062692-07:00",
+        "country_code": "DE",
+        "country_code_confidence": 1.0,
+        "city_name": "Frankfurt Am Main"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.152.208.166",
+        "ports": {
+            "http": 8197,
+            "socks5": 8197
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:41.013838-07:00",
+        "country_code": "DE",
+        "country_code_confidence": 0.6,
+        "city_name": "Berlin"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "138.128.97.235",
+        "ports": {
+            "http": 7825,
+            "socks5": 7825
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:24.761389-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Columbus"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.38.38.27",
+        "ports": {
+            "http": 6230,
+            "socks5": 6230
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:03.353974-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Stillwater"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.194.8.149",
+        "ports": {
+            "http": 5680,
+            "socks5": 5680
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:02.389236-07:00",
+        "country_code": "FR",
+        "country_code_confidence": 0.6,
+        "city_name": "Saint-Denis"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.192.138.167",
+        "ports": {
+            "http": 6809,
+            "socks5": 6809
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:34.007849-07:00",
+        "country_code": "NO",
+        "country_code_confidence": 1.0,
+        "city_name": "Oslo"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.12.113.28",
+        "ports": {
+            "http": 6082,
+            "socks5": 6082
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:33.190148-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.12.103.197",
+        "ports": {
+            "http": 6580,
+            "socks5": 6580
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:21.157523-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Washington"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "193.148.75.183",
+        "ports": {
+            "http": 7017,
+            "socks5": 7017
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:55.901849-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.192.148.129",
+        "ports": {
+            "http": 6463,
+            "socks5": 6463
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:39.809099-07:00",
+        "country_code": "SE",
+        "country_code_confidence": 1.0,
+        "city_name": "Stockholm"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "156.238.5.130",
+        "ports": {
+            "http": 5471,
+            "socks5": 5471
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:56.255459-07:00",
+        "country_code": "DE",
+        "country_code_confidence": 1.0,
+        "city_name": "Frankfurt Am Main"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.95.96.177",
+        "ports": {
+            "http": 8736,
+            "socks5": 8736
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:16.473040-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Seattle"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "192.186.172.133",
+        "ports": {
+            "http": 9133,
+            "socks5": 9133
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:15.922752-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Philadelphia"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "156.238.10.56",
+        "ports": {
+            "http": 5138,
+            "socks5": 5138
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:32.590600-07:00",
+        "country_code": "FR",
+        "country_code_confidence": 0.6,
+        "city_name": "Paris"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.13.234.142",
+        "ports": {
+            "http": 5532,
+            "socks5": 5532
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:18.285821-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "104.227.120.244",
+        "ports": {
+            "http": 7318,
+            "socks5": 7318
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:07.236815-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Buckhannon"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.13.71.63",
+        "ports": {
+            "http": 6459,
+            "socks5": 6459
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:05.734809-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Roanoke"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "193.148.75.155",
+        "ports": {
+            "http": 6989,
+            "socks5": 6989
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:19.955898-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.155.71.71",
+        "ports": {
+            "http": 8660,
+            "socks5": 8660
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:36.274768-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "192.156.217.87",
+        "ports": {
+            "http": 7161,
+            "socks5": 7161
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:09.274774-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.192.148.102",
+        "ports": {
+            "http": 6436,
+            "socks5": 6436
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:56.198391-07:00",
+        "country_code": "SE",
+        "country_code_confidence": 1.0,
+        "city_name": "Stockholm"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.9.116.71",
+        "ports": {
+            "http": 8596,
+            "socks5": 8596
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:19.940888-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.12.149.34",
+        "ports": {
+            "http": 6024,
+            "socks5": 6024
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:11.721834-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Rancho Palos Verdes"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "5.181.42.3",
+        "ports": {
+            "http": 6064,
+            "socks5": 6064
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:34.707562-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.8,
+        "city_name": "Seattle"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.14.193.62",
+        "ports": {
+            "http": 6687,
+            "socks5": 6687
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:51.836414-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "193.5.251.186",
+        "ports": {
+            "http": 7693,
+            "socks5": 7693
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:09.586050-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "144.168.137.87",
+        "ports": {
+            "http": 8629,
+            "socks5": 8629
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:48.271842-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Portland"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "144.168.151.120",
+        "ports": {
+            "http": 6164,
+            "socks5": 6164
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:23.168954-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Blennerhassett"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "66.150.70.17",
+        "ports": {
+            "http": 6705,
+            "socks5": 6705
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:23.617802-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.155.70.68",
+        "ports": {
+            "http": 8078,
+            "socks5": 8078
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:18.546160-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "5.154.254.79",
+        "ports": {
+            "http": 5090,
+            "socks5": 5090
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:52.639112-07:00",
+        "country_code": "IT",
+        "country_code_confidence": 1.0,
+        "city_name": "Rome"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.95.0.18",
+        "ports": {
+            "http": 6271,
+            "socks5": 6271
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:07.320620-07:00",
+        "country_code": "FR",
+        "country_code_confidence": 0.6,
+        "city_name": "Saint-Denis"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.92.123.229",
+        "ports": {
+            "http": 5567,
+            "socks5": 5567
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:19.533608-07:00",
+        "country_code": "RO",
+        "country_code_confidence": 1.0,
+        "city_name": "Bucharest"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "23.236.255.223",
+        "ports": {
+            "http": 7274,
+            "socks5": 7274
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:39.788665-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Charlotte"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.153.22.13",
+        "ports": {
+            "http": 5953,
+            "socks5": 5953
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:24.059417-07:00",
+        "country_code": "DE",
+        "country_code_confidence": 0.6,
+        "city_name": "Berlin"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "171.22.132.77",
+        "ports": {
+            "http": 7530,
+            "socks5": 7530
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:53.622853-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.13.71.223",
+        "ports": {
+            "http": 6619,
+            "socks5": 6619
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:00.393513-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Roanoke"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.192.145.181",
+        "ports": {
+            "http": 5523,
+            "socks5": 5523
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:00.500415-07:00",
+        "country_code": "PL",
+        "country_code_confidence": 1.0,
+        "city_name": "Mysiadło"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.154.58.88",
+        "ports": {
+            "http": 7601,
+            "socks5": 7601
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:12.057162-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "64.43.90.5",
+        "ports": {
+            "http": 6520,
+            "socks5": 6520
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:02.062574-07:00",
+        "country_code": "GB",
+        "country_code_confidence": 1.0,
+        "city_name": "London"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.38.38.190",
+        "ports": {
+            "http": 6393,
+            "socks5": 6393
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:20.758748-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Stillwater"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "5.252.141.236",
+        "ports": {
+            "http": 6102,
+            "socks5": 6102
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:22.089785-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Pasadena"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "138.128.38.223",
+        "ports": {
+            "http": 6290,
+            "socks5": 6290
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:14.256725-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Milwaukee"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.21.39.199",
+        "ports": {
+            "http": 6037,
+            "socks5": 6037
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:54.815519-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Skyline View"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.16.243.204",
+        "ports": {
+            "http": 6348,
+            "socks5": 6348
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:33.730572-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Las Vegas"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.158.184.129",
+        "ports": {
+            "http": 9205,
+            "socks5": 9205
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:46.618098-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Baltimore"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.192.152.149",
+        "ports": {
+            "http": 6087,
+            "socks5": 6087
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:56.154294-07:00",
+        "country_code": "HU",
+        "country_code_confidence": 0.6,
+        "city_name": "Budapest"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.13.71.24",
+        "ports": {
+            "http": 6420,
+            "socks5": 6420
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:57.637008-07:00",
+        "country_code": "US",
+        "country_code_confidence": 0.6,
+        "city_name": "Roanoke"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.153.22.35",
+        "ports": {
+            "http": 5975,
+            "socks5": 5975
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:45.888163-07:00",
+        "country_code": "DE",
+        "country_code_confidence": 0.6,
+        "city_name": "Berlin"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.85.101.232",
+        "ports": {
+            "http": 5663,
+            "socks5": 5663
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:39.217548-07:00",
+        "country_code": "DE",
+        "country_code_confidence": 1.0,
+        "city_name": "Frankfurt Am Main"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "156.238.7.11",
+        "ports": {
+            "http": 6023,
+            "socks5": 6023
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:58.992598-07:00",
+        "country_code": "DE",
+        "country_code_confidence": 1.0,
+        "city_name": "Frankfurt Am Main"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "5.154.254.209",
+        "ports": {
+            "http": 5220,
+            "socks5": 5220
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:06.191279-07:00",
+        "country_code": "IT",
+        "country_code_confidence": 1.0,
+        "city_name": "Rome"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "91.246.194.62",
+        "ports": {
+            "http": 6575,
+            "socks5": 6575
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:45.867629-07:00",
+        "country_code": "DE",
+        "country_code_confidence": 1.0,
+        "city_name": "Köln"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.92.126.92",
+        "ports": {
+            "http": 5430,
+            "socks5": 5430
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:05.227638-07:00",
+        "country_code": "HU",
+        "country_code_confidence": 1.0,
+        "city_name": "Budapest"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "80.253.249.201",
+        "ports": {
+            "http": 5244,
+            "socks5": 5244
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:38.410945-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "193.27.10.28",
+        "ports": {
+            "http": 6113,
+            "socks5": 6113
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:22.115245-07:00",
+        "country_code": "SC",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "182.54.239.108",
+        "ports": {
+            "http": 8125,
+            "socks5": 8125
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:36.480974-07:00",
+        "country_code": "GB",
+        "country_code_confidence": 0.6,
+        "city_name": "Hatsudai"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "2.59.148.49",
+        "ports": {
+            "http": 5095,
+            "socks5": 5095
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:48.037274-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "23.254.18.20",
+        "ports": {
+            "http": 7592,
+            "socks5": 7592
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:52.352459-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "San Diego"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.72.119.240",
+        "ports": {
+            "http": 9316,
+            "socks5": 9316
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:20.222292-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Milwaukee"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.57.226.136",
+        "ports": {
+            "http": 9566,
+            "socks5": 9566
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:38.639051-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Westchester"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.140.13.228",
+        "ports": {
+            "http": 9241,
+            "socks5": 9241
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:13.797529-07:00",
+        "country_code": "GB",
+        "country_code_confidence": 0.6,
+        "city_name": "London"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "5.154.254.148",
+        "ports": {
+            "http": 5159,
+            "socks5": 5159
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:23.333398-07:00",
+        "country_code": "IT",
+        "country_code_confidence": 1.0,
+        "city_name": "Rome"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "23.236.216.57",
+        "ports": {
+            "http": 6087,
+            "socks5": 6087
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:02.323555-07:00",
+        "country_code": "ES",
+        "country_code_confidence": 1.0,
+        "city_name": "Marbella"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "104.227.94.7",
+        "ports": {
+            "http": 7567,
+            "socks5": 7567
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:15.715207-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Whitingham"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.155.70.16",
+        "ports": {
+            "http": 8026,
+            "socks5": 8026
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:08.308578-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "200.0.61.193",
+        "ports": {
+            "http": 6268,
+            "socks5": 6268
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:05.012647-07:00",
+        "country_code": "ES",
+        "country_code_confidence": 0.8,
+        "city_name": "Madrid"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.9.122.101",
+        "ports": {
+            "http": 8182,
+            "socks5": 8182
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:44.762920-07:00",
+        "country_code": "FR",
+        "country_code_confidence": 0.8,
+        "city_name": "Strasbourg"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.83.130.195",
+        "ports": {
+            "http": 5826,
+            "socks5": 5826
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:19.951265-07:00",
+        "country_code": "US",
+        "country_code_confidence": 1.0,
+        "city_name": "Los Angeles"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.136.231.115",
+        "ports": {
+            "http": 7171,
+            "socks5": 7171
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:22.247546-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.6,
+        "city_name": "Amsterdam"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "193.27.23.159",
+        "ports": {
+            "http": 9247,
+            "socks5": 9247
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:46.147993-07:00",
+        "country_code": "SC",
+        "country_code_confidence": 0.4,
+        "city_name": "Haarlem"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.146.91.6",
+        "ports": {
+            "http": 6172,
+            "socks5": 6172
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:21.332199-07:00",
+        "country_code": "NL",
+        "country_code_confidence": 0.4,
+        "city_name": "Haarlem"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.152.202.19",
+        "ports": {
+            "http": 9024,
+            "socks5": 9024
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:15:04.455998-07:00",
+        "country_code": "SC",
+        "country_code_confidence": 0.4,
+        "city_name": "Haarlem"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "154.85.100.221",
+        "ports": {
+            "http": 5262,
+            "socks5": 5262
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:13:42.524492-07:00",
+        "country_code": "DE",
+        "country_code_confidence": 1.0,
+        "city_name": "Frankfurt Am Main"
+    },
+    {
+        "username": "npwxgent",
+        "password": "2lsk2oqv82qu",
+        "proxy_address": "45.9.122.163",
+        "ports": {
+            "http": 8244,
+            "socks5": 8244
+        },
+        "valid": true,
+        "last_verification": "2022-06-04T04:14:44.787544-07:00",
+        "country_code": "FR",
+        "country_code_confidence": 0.8,
+        "city_name": "Strasbourg"
+    }
+]
